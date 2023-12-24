@@ -2,26 +2,31 @@ const express = require("express");
 const searchroute = require("./route/searchrouter");
 const productRoute = require("./route/productRote");
 const app = express();
-app.use(express.json());
 const cors = require("cors");
-const stripe = require("stripe")("sk_test_51OFfDcSFuYPQ8NkkuYA72lHvBGSjM85WF9l552EtiMbyoKQ9Vcg0xWQXONFqiPNbx1CMp7n6bUEL12rtIF9DYYJG00sgCMYDrL");
+const stripe = require("stripe")("sk_test_51OQ699SDqC8mEPn5pB7sPVdEUfIgAMLHz3odwvDk5s4OhR5qM3SVC6O41UkeROoxMoUj9Z1X6CEkID2erfRIgwoi00iKuOSTzF");
 const connection = require("./config/db1");
-
 console.log(connection);
 const routeone = require("./route/userrouter");
 const port = process.env.PORT || 7800;
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(express.json());
+// app.use(
+//   cors({
+//     origin: "*",
+//   })
+// );
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(searchroute);
 app.use("/api", routeone);
 app.use("/api", productRoute);
-app.post("/checkout", async (req, res) => {
+
+// checkout Api
+
+
+app.post("/api/create-checkout-session", async (req, res) => {
   const { products } = req.body;
   console.log(products);
   const lineItems = products.map((product) => ({
@@ -39,8 +44,8 @@ app.post("/checkout", async (req, res) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: "https://chic-scone-7d743a.netlify.app",
-    cancel_url: "https://chic-scone-7d743a.netlify.app",
+    success_url: "https://localhost:3000/success",
+    cancel_url: "https://localhost:3000/cancle",
   });
   res.json({ id: session.id });
 });
