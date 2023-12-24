@@ -23,25 +23,3 @@ const auth=((req,res,next)=>{
 })
 
 module.exports=auth
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   // const token = authorization && authorization.split(" ")[1];
-   // const token=BearerToken
-
-//  let BearerToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imtsb0BnbWFpbC5jb20iLCJpYXQiOjE3MDAzMDM2OTcsImV4cCI6MTczMTg2MTI5N30.ojjyKmzc23ZPWJ7lkiwK6RNjqWXhrup5P0dx5OlCJDc";
