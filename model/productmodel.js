@@ -9,7 +9,6 @@ const productSchema = mongoose.Schema({
   rating: String,
   image: String,
   brand: String,
-  // imagess: String,
   para: String,
 });
 const productColletion = mongoose.model("productColletion_All", productSchema);
