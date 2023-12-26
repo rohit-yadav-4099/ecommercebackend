@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
-app.use(searchroute);
+app.use("api/",searchroute);
 app.use("/api", routeone);
 app.use("/api", productRoute);
 
@@ -31,7 +31,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
   console.log(products);
   const lineItems = products.map((product) => ({
     price_data: {
-      currency: "inr",
+      currency: "USD",
       product_data: {
         name: product.name,
       },
